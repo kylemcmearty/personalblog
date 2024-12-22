@@ -1,0 +1,58 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+
+export const article = {
+  author: 'Kyle McMearty',
+  date: '2024-12-22',
+  title: 'Keys to a Successful AI Project',
+  description:
+    'Two fundamental pillars that determine the success of any AI initiative: a clear value proposition and robust data systems. Understanding these elements can mean the difference between an AI project that transforms your business and one that never makes it to production.',
+}
+
+export const metadata = {
+  title: article.title,
+  description: article.description,
+}
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+The landscape of AI projects is littered with initiatives that looked promising on paper but failed to deliver real value. After working on numerous AI implementations, I've found that success often hinges on two critical foundations: a well-defined value proposition and robust data systems.
+
+## Defining Your Value Proposition
+
+The most successful AI projects start with a clear answer to "why?" Before diving into model architectures or data pipelines, you need to understand:
+
+1. What specific business problem are you solving?
+2. How will you measure success?
+3. What's the minimum viable improvement that makes this worth pursuing?
+
+Too often, teams get caught up in the excitement of AI capabilities without first establishing these fundamentals. A sophisticated AI system that doesn't solve a real business need is just an expensive research project.
+
+## Building Robust Data Infrastructure
+
+Once you've defined your value proposition, the next critical piece is your data infrastructure. AI projects live and die by their data systems, and success requires a continuous flow of clean, reliable data.
+
+### Continuous Data Delivery
+
+Your data infrastructure needs to be built for consistency and reliability. This means:
+
+- Automated Data Collection: Setting up reliable data ingestion pipelines that run on schedule
+- Real-time Validation: Implementing checks that catch data quality issues before they propagate
+- Monitoring Systems: Creating dashboards and alerts for data pipeline health
+- Self-healing Processes: Developing automated recovery procedures for common failure modes
+
+### Data Quality Management
+
+Clean data is non-negotiable for AI systems. Your infrastructure should include:
+
+- Standardization Rules: Consistent formatting and normalization across data sources
+- Anomaly Detection: Automated systems to flag unusual patterns or potential errors
+- Data Cleaning Pipelines: Automated processes to handle missing values, outliers, and inconsistencies
+- Quality Metrics: Clear KPIs for data quality that are regularly tracked and reported
+
+A common pitfall is treating data infrastructure as a one-time setup rather than a living system. The most successful AI projects have teams dedicated to maintaining and improving their data pipelines, ensuring a constant flow of high-quality data to their models.
+
+## The Path Forward
+
+The most effective AI implementations I've seen treat these two elements - value proposition and data systems - as foundational rather than supplementary. They're not just checkboxes to tick off; they're ongoing concerns that require constant attention and refinement.
+
+In future posts, we'll dive deeper into specific strategies for each of these areas, but understanding their importance is the first step toward building AI systems that deliver real value.

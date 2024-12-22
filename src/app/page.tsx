@@ -11,10 +11,7 @@ import {
   LinkedInIcon,
   XIcon,
 } from '@/components/SocialIcons'
-import logoAirbnb from '@/images/logos/airbnb.svg'
-import logoFacebook from '@/images/logos/facebook.svg'
 import logoPlanetaria from '@/images/logos/planetaria.svg'
-import logoStarbucks from '@/images/logos/starbucks.svg'
 import image1 from '@/images/photos/image-1.jpg'
 import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/image-3.jpg'
@@ -206,27 +203,26 @@ function Resume() {
         dateTime: new Date().getFullYear().toString(),
       },
     },
-    // {
-    //   company: 'Airbnb',
-    //   title: 'Product Designer',
-    //   logo: logoAirbnb,
-    //   start: '2014',
-    //   end: '2019',
-    // },
-    // {
-    //   company: 'Facebook',
-    //   title: 'iOS Software Engineer',
-    //   logo: logoFacebook,
-    //   start: '2011',
-    //   end: '2014',
-    // },
-    // {
-    //   company: 'Starbucks',
-    //   title: 'Shift Supervisor',
-    //   logo: logoStarbucks,
-    //   start: '2008',
-    //   end: '2011',
-    // },
+    {
+      company: 'Timmons Group',
+      title: 'GIS Technician',
+      logo: logoPlanetaria,
+      start: '2018',
+      end: {
+        label: '2019',
+        dateTime: new Date().getFullYear().toString(),
+      },
+    },
+    {
+      company: 'Southwest Florida Water Management District',
+      title: 'Engineering Inspector',
+      logo: logoPlanetaria,
+      start: '2015',
+      end: {
+        label: '2018',
+        dateTime: new Date().getFullYear().toString(),
+      },
+    },
   ]
 
   return (
@@ -283,16 +279,19 @@ export default async function Home() {
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            Software developer and designer.
+            Software Builder.
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I’m Kyle, a software designer based in St. Pete, FL.
+            I’m Kyle, a builder based in St. Pete, FL.
+            <br /> I have been working on Personalization AI/ML
+            <br /> in the Retailer Grocery space for the past 5 years.
+            <br /> I also enjoy learning about Marketing, Finance & Design.
           </p>
           <div className="mt-6 flex gap-6">
-            <SocialLink 
-              href="https://x.com/kylemcmearty" 
-              aria-label="Follow on X" 
-              icon={XIcon} 
+            <SocialLink
+              href="https://x.com/kylemcmearty"
+              aria-label="Follow on X"
+              icon={XIcon}
             />
             {/* <SocialLink
               href="#"
