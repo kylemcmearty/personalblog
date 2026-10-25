@@ -1,4 +1,4 @@
-import { type PluginUtils } from 'tailwindcss/types/config'
+type PluginUtils = { theme: (path: string) => any }
 
 export default function typographyStyles({ theme }: PluginUtils) {
   return {
@@ -221,7 +221,7 @@ export default function typographyStyles({ theme }: PluginUtils) {
           marginBottom: theme('spacing.20'),
           borderTopWidth: '1px',
           borderColor: 'var(--tw-prose-hr)',
-          '@screen lg': {
+          '@media (min-width: 64rem)': {
             marginLeft: `calc(${theme('spacing.12')} * -1)`,
             marginRight: `calc(${theme('spacing.12')} * -1)`,
           },
