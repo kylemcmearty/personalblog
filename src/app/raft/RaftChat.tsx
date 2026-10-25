@@ -18,6 +18,7 @@ import {
   InputGroupButton,
   InputGroupTextarea,
 } from '@/components/ui/input-group'
+import { Label } from '@/components/ui/label'
 import { Message, MessageContent } from '@/components/ui/message'
 import {
   MessageScroller,
@@ -27,6 +28,7 @@ import {
   MessageScrollerProvider,
   MessageScrollerViewport,
 } from '@/components/ui/message-scroller'
+import { Switch } from '@/components/ui/switch'
 import {
   Trace,
   TraceCollapsible,
@@ -56,13 +58,21 @@ type Step = {
   done: boolean
 }
 
-type Turn = { query: string; steps: Step[]; result?: unknown; failed?: boolean }
+type Turn = { query: string; extended: boolean; steps: Step[]; result?: unknown; failed?: boolean }
 
 const EXAMPLES = [
   'Show me all orders from Ohio over $500',
   'What is the average order total?',
   'Top 2 most expensive orders',
   'Get order 1003',
+]
+
+// Extended mode: 50 generated orders with messy layouts and optional fields.
+const EXTENDED_EXAMPLES = [
+  'Orders paid with paypal in March 2026',
+  'How many orders were paid by cash?',
+  'Top 3 most expensive orders in Ohio',
+  'Orders with no email',
 ]
 
 const ICONS: Record<string, typeof SearchIcon> = {
@@ -186,6 +196,7 @@ function Steps({ turn }: { turn: Turn }) {
 export function RaftChat() {
   const [turns, setTurns] = useState<Turn[]>([])
   const [input, setInput] = useState('')
+  const [extended, setExtended] = useState(false)
   const pending = turns.length > 0 && turns.at(-1)?.result === undefined
 
   const update = (fn: (turn: Turn) => Turn) =>
@@ -195,12 +206,12 @@ export function RaftChat() {
     query = query.trim()
     if (!query || pending) return
     setInput('')
-    setTurns((t) => [...t, { query, steps: [] }])
+    setTurns((t) => [...t, { query, extended, steps: [] }])
     try {
       const res = await fetch('/raft/api/ask/stream', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query }),
+        body: JSON.stringify({ query, extended }),
       })
       if (!res.ok || !res.body) {
         const body = await res.json().catch(() => ({ error: `HTTP ${res.status}` }))
@@ -232,7 +243,7 @@ export function RaftChat() {
 
   return (
     <div className="flex h-[36rem] flex-col gap-4">
-      <MessageScrollerProvider>
+      <MessageScrollerProvider autoScroll>
         <MessageScroller className="rounded-2xl border border-zinc-100 dark:border-zinc-700/40">
           <MessageScrollerViewport>
             <MessageScrollerContent className="p-4">
@@ -240,7 +251,7 @@ export function RaftChat() {
                 <div className="m-auto flex flex-col items-center gap-3 text-sm text-zinc-500">
                   <p>Try one of these:</p>
                   <div className="flex flex-wrap justify-center gap-2">
-                    {EXAMPLES.map((q) => (
+                    {(extended ? EXTENDED_EXAMPLES : EXAMPLES).map((q) => (
                       <button
                         key={q}
                         onClick={() => ask(q)}
@@ -252,15 +263,23 @@ export function RaftChat() {
                   </div>
                 </div>
               )}
-              {turns.map((turn, i) => (
-                <MessageScrollerItem key={i} scrollAnchor className="flex flex-col gap-4">
+              {turns.map((turn, i) => [
+                // The question is the scroll anchor; the reply streams in under it.
+                <MessageScrollerItem key={`q${i}`} messageId={`q${i}`} scrollAnchor>
                   <Message align="end">
                     <MessageContent>
                       <Bubble>
-                        <BubbleContent>{turn.query}</BubbleContent>
+                        <BubbleContent>
+                          {turn.query}
+                          {turn.extended && (
+                            <span className="ml-2 text-xs opacity-60">· extended data</span>
+                          )}
+                        </BubbleContent>
                       </Bubble>
                     </MessageContent>
                   </Message>
+                </MessageScrollerItem>,
+                <MessageScrollerItem key={`a${i}`} messageId={`a${i}`}>
                   <Message>
                     <MessageContent className="flex flex-col gap-3">
                       <Steps turn={turn} />
@@ -275,13 +294,25 @@ export function RaftChat() {
                       )}
                     </MessageContent>
                   </Message>
-                </MessageScrollerItem>
-              ))}
+                </MessageScrollerItem>,
+              ])}
             </MessageScrollerContent>
           </MessageScrollerViewport>
           <MessageScrollerButton />
         </MessageScroller>
       </MessageScrollerProvider>
+
+      <div className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400">
+        <Switch
+          id="raft-extended"
+          checked={extended}
+          onCheckedChange={setExtended}
+          disabled={pending}
+        />
+        <Label htmlFor="raft-extended" className="font-normal">
+          Extended data: 50 messy orders with dates, emails and payments (slower)
+        </Label>
+      </div>
 
       <form
         onSubmit={(e) => {
