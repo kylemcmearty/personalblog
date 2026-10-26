@@ -310,7 +310,7 @@ export function RaftChat() {
           disabled={pending}
         />
         <Label htmlFor="raft-extended" className="font-normal">
-          Extended data: 5 messy records with dates, emails, payments and 2 bad ones
+          Extended data: 5 records in messy formats, with extra fields (date, email, payment)
         </Label>
       </div>
 
