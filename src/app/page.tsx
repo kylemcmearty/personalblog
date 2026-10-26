@@ -14,7 +14,7 @@ import {
 import logoPlanetaria from '@/images/logos/planetaria.svg'
 import image1 from '@/images/photos/image-1.jpg'
 import image2 from '@/images/photos/image-2.jpg'
-import image3 from '@/images/photos/image-3.jpg'
+import image3 from '@/images/photos/sailing-st-pete.jpg'
 import image4 from '@/images/photos/image-4.jpg'
 import image5 from '@/images/photos/image-5.jpg'
 import { type ArticleWithSlug, getAllArticles } from '@/lib/articles'
@@ -292,7 +292,7 @@ export default async function Home() {
             <br className="hidden md:block" /> I have been working on
             Personalization AI/ML
             <br className="hidden md:block" /> in the Retailer Grocery space for
-            the past 5 years.
+            the past 6 years.
             <br className="hidden md:block" /> I also enjoy learning about
             Marketing, Economics, Design & Mapping Technology.
           </p>

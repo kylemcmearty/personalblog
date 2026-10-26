@@ -11,7 +11,7 @@ import {
   XIcon,
 } from '@/components/SocialIcons'
 // import portraitImage from '@/images/portrait.jpg'
-import aboutImage from '@/images/about.jpg'
+import aboutImage from '@/images/about-sailing.jpg'
 
 function SocialLink({
   className,
@@ -62,7 +62,7 @@ export default function About() {
           <div className="max-w-xs px-2.5 lg:max-w-none">
             <Image
               src={aboutImage}
-              alt=""
+              alt="Kyle at the helm of a sailboat on Tampa Bay"
               sizes="(min-width: 1024px) 32rem, 20rem"
               className="aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
             />
