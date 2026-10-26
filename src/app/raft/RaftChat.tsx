@@ -67,7 +67,7 @@ const EXAMPLES = [
   'Get order 1003',
 ]
 
-// Extended mode: 8 generated orders with messy layouts, optional fields and bad records.
+// Extended mode: 5 messy records (3 orders in different layouts + 2 bad ones).
 const EXTENDED_EXAMPLES = [
   'Orders paid by card',
   'Orders in May 2026',
@@ -310,7 +310,7 @@ export function RaftChat() {
           disabled={pending}
         />
         <Label htmlFor="raft-extended" className="font-normal">
-          Extended data: 8 messy orders with dates, emails, payments and a few bad records
+          Extended data: 5 messy records with dates, emails, payments and 2 bad ones
         </Label>
       </div>
 
