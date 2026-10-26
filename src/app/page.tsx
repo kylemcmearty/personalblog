@@ -294,7 +294,7 @@ export default async function Home() {
             <br className="hidden md:block" /> in the Retailer Grocery space for
             the past 5 years.
             <br className="hidden md:block" /> I also enjoy learning about
-            Marketing, Finance & Design.
+            Marketing, Economics, Design & Mapping Technology.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink

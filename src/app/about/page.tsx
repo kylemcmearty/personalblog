@@ -78,14 +78,14 @@ export default function About() {
               I&apos;m fascinated by the interconnected nature of building great
               products. While my foundation is in technology,
               I&apos;ve learned that exceptional solutions emerge from
-              understanding the entire ecosystem - from clean code architecture
+              understanding the entire ecosystem, from clean code architecture
               to intuitive design, from marketing psychology to business
               fundamentals.
             </p>
             <p>
               Like a liberal arts approach to building, I believe in studying
               the full spectrum of disciplines that make products successful.
-              Good software alone isn&apos;t enough - you need thoughtful design
+              Good software alone isn&apos;t enough. You need thoughtful design
               that resonates, marketing that connects, and systems that scale.
               It&apos;s about orchestrating these elements into something
               greater than the sum of their parts.
